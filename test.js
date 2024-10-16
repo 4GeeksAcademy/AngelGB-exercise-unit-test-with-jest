@@ -23,7 +23,7 @@ test("Euros a Dolares", function() {
     // Hago mi comparación (la prueba)
     expect(fromEuroToDollar(3.5)).toBe(expected);
 })
-test("Dolares a Yen", function() {
+test("1 Dolares a Yen", function() {
     // Importo la funcion desde app.js
     const { fromDollarToYen } = require('./app.js');
 
@@ -33,13 +33,13 @@ test("Dolares a Yen", function() {
         "GBP": 0.87, // british pound
     }
     const Yen = fromDollarToYen(1)
-
+    //            dolar / valor de un dolar en euros * valor de yen en euros
     const expected = (1 / oneEuroIs.USD) * oneEuroIs.JPY;
 
-    // Uso toBeCloseTo para evitar problemas con la precision de los decimales
-    expect(fromDollarToYen(1)).toBeCloseTo(expected);
+    // Uso toBeCloseTo para evitar problemas con la precision de los decimales a 2 (por defecto)
+    expect(fromDollarToYen(1)).toBeCloseTo(146.26);
 })
-test("Yen a Pound", function() {
+test(" 100 Yen a Pound", function() {
     // Importo la funcion desde app.js
     const { fromYenToPound } = require('./app.js');
 
@@ -49,9 +49,9 @@ test("Yen a Pound", function() {
         "GBP": 0.87, // british pound
     }
     const pound = fromYenToPound(1)
-
+    //              Yen / valor de un yen en euros * valor de Pound en euros
     const expected = (1 / oneEuroIs.JPY) * oneEuroIs.GBP;
 
-    // Uso toBeCloseTo para evitar problemas con la preciosion de los decimales
-    expect(fromYenToPound(1)).toBeCloseTo(expected);
+    // Uso toBeCloseTo para evitar problemas con la preciosion de los decimales a 3
+    expect(fromYenToPound(100)).toBeCloseTo(0.556, 3);
 })
